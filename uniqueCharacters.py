@@ -10,11 +10,13 @@ import re
 import sys
 
 def isUnique(input_str):
-    alphabets = [0]*26
+    if len(input_str) > 256:
+        return False
+    alphabets = [False]*256
     for char in input_str:
-        if alphabets[ord(char.lower())-ord('a')] > 0:
+        if alphabets[ord(char.lower())]:
             return False 
-        alphabets[ord(char.lower())-ord('a')] += 1
+        alphabets[ord(char.lower())] = True
     return True
 
 
