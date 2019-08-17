@@ -24,7 +24,7 @@ def palindromePermutation(word):
     for alphabet in ascii_lowercase:
         if (char_count[alphabet] % 2) != 0:
             if (word_len % 2) == 0:
-                # For even length word , there can't be odd count character in it of it to be a palindrome
+                # For even length word , there can't be odd count character in it for it to be a palindrome
                 return False
             if already_seen_single_count:
                 # For Odd lenght paldinrome word there can't be more than one single count characters
