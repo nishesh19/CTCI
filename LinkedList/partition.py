@@ -8,6 +8,9 @@ Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition = 5)
 Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 '''
 
+import sys
+from collections import defaultdict
+
 
 class Node:
 
@@ -16,11 +19,11 @@ class Node:
         self._value = value
 
     @property
-    def value(self):
+    def val(self):
         return self._value
 
-    @value.setter
-    def value(self, value):
+    @val.setter
+    def val(self, value):
         self._value = value
 
     @property
@@ -48,11 +51,11 @@ class SinglyLinkedList:
         self.tail = newNode
 
     def partition(self, partition_value):
-        left,right = self.head,self.head
+        left, right = self.head, self.head
 
         while right:
             if right.value < partition_value:
-                left.value,right.value = right.value,left.value
+                left.value, right.value = right.value, left.value
                 left = left.next
             right = right.next
 
@@ -63,15 +66,46 @@ class SinglyLinkedList:
             print(head.value)
             head = head.next
 
+    def removeZeroSumSublists(self):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not self.head:
+            return None
+
+        curr_sum = 0
+        prefix_sum = {}
+        dummy = Node(0)
+        dummy.next = self.head
+        curr_node = dummy
+
+        while curr_node:
+            curr_sum += curr_node.val
+            prefix_sum[curr_sum] = curr_node
+            curr_node = curr_node.next
+
+        curr_node = dummy
+        curr_sum = 0
+
+        while curr_node:
+            curr_sum += curr_node.val
+            curr_node.next = prefix_sum[curr_sum].next
+            curr_node = curr_node.next
+
+        return dummy.next
+
 
 if __name__ == '__main__':
-    args = input().split(' ')
-    no_of_nodes = int(args[0])
 
     sl = SinglyLinkedList()
 
-    for i in range(no_of_nodes):
-        sl.insert(int(input()))
-    
-    sl.partition(int(args[1]))
-    sl.iterate()
+    for x in [1, 2, 3, -3, 4]:
+        sl.insert(x)
+
+    head = sl.removeZeroSumSublists()
+    while head:
+        print(head.val)
+        head = head.next
+    # sl.partition(int(args[1]))
+    # sl.iterate()
