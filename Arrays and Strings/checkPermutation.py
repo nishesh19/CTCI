@@ -22,3 +22,4 @@ def checkPermutation(input1,input2):
 
 if __name__ == '__main__':
     print(checkPermutation(str(input()),str(input())))
+    

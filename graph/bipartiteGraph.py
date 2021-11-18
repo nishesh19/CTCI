@@ -55,7 +55,7 @@ def isBipartite(graph):
                 elif colored[node] == colored[curr]:
                     return False
 
-                if not visited[index]:
+                if not visited[node]:
                     queue.append(node)
 
     return True

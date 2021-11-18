@@ -1,0 +1,41 @@
+from bitarray import bitarray
+class Solution:
+    def __init__(self,size):
+        self.ids = bitarray(2*size-1)
+        self.ids.setall(0)
+        self.last_id = 0
+        self.max_size = size
+
+    def get_id():
+        index = 0
+        while index < self.max_size - 1:
+            if not self.ids[2*index+1]:
+                index = 2*index + 1
+            elif not self.ids[2*index+2]:
+                index = 2*index + 2
+            else:
+                return -1
+
+        self.updateTree(index)
+        return index-max_size+1
+
+    def updateTree(id):
+        while id > 0:
+            parent = (id-1)//2
+            if self.ids[2*parent+1] and self.ids[2*parent+2]:
+                self.ids[parent] = 1
+            else:
+                self.ids[parent] = 0
+
+            id = parent
+
+    def release_id(id):
+        if self.ids[id+self.max_size-1]:
+            self.ids[id+sel]
+
+    def get_next_clear_id(last_id):
+        while last_id <len(self.ids) and self.ids[last_id]:
+            last_id += 1
+
+        return last_id
+

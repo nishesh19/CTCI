@@ -84,8 +84,8 @@ if __name__ == '__main__':
             llist_item = int(input())
             llist.insert_node(llist_item)
 
-        extra = SinglyLinkedListNode(-1);
-        temp = llist.head;
+        extra = SinglyLinkedListNode(-1)
+        temp = llist.head
 
         for i in range(llist_count):
             if i == index:
